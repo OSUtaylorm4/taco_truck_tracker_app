@@ -7,8 +7,9 @@ class ApiController < ApplicationController
       if params && params[:full_name] && params[:email] && params[:password]
         
         params[:user] = Hash.new    
-        params[:user][:first_name] = params[:full_name].split(" ").first
-        params[:user][:last_name] = params[:full_name].split(" ").last
+        #params[:user][:first_name] = params[:full_name].split(" ").first
+        #params[:user][:last_name] = params[:full_name].split(" ").last
+        params[:user][:username] = params[:full_name]
         params[:user][:email] = params[:email]
         
         begin 
@@ -17,7 +18,7 @@ class ApiController < ApplicationController
           decrypted_pass = nil          
         end
                 
-        params[:user][:password] = decrypted_pass  
+        params[:user][:password_digest] = decrypted_pass  
         params[:user][:verification_code] = rand_string(20)
         
         user = User.new(user_params)

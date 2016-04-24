@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316171851) do
+ActiveRecord::Schema.define(version: 20160424184909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 20160316171851) do
     t.string   "email"
     t.float    "latitude"
     t.float    "longitude"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.string   "company"
     t.string   "password_digest"
     t.string   "remember_digest"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20160316171851) do
     t.string   "phone"
     t.string   "menu1"
     t.string   "menu2"
-    t.boolean  "status",          default: false
+    t.boolean  "status",               default: false
     t.string   "sun_open"
     t.string   "sun_close"
     t.string   "mon_open"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20160316171851) do
     t.string   "thurs_loc"
     t.string   "fri_loc"
     t.string   "sat_loc"
+    t.string   "authentication_token"
   end
 
   add_index "vendors", ["email"], name: "index_vendors_on_email", unique: true, using: :btree

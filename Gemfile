@@ -45,8 +45,19 @@ gem 'mini_magick'
 
 gem 'fog-aws'
 
-gem "figaro"
+gem 'figaro'
 
+gem 'grape'
+
+gem 'kaminari'
+
+gem 'active_hash_relation'
+
+gem 'active_model_serializers', '0.9.2'
+
+gem 'rack-cors', :require => 'rack/cors'
+
+gem 'rake', '11.1.2'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'

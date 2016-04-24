@@ -20,6 +20,18 @@ Rails.application.routes.draw do
   resources :vendors do
     resources :reviews, except: [:show, :index]
   end
+  
+  #api
+  namespace :api do
+    namespace :v1 do
+      resources :vendors, only: [:index, :create, :show, :update, :destroy]
+      resources :reviews, only: [:index, :show, :destroy]
+    end
+  end
+
+
+
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

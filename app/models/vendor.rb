@@ -1,6 +1,7 @@
 class Vendor < ActiveRecord::Base
   attr_accessor :remember_token
 	before_save { self.email = email.downcase }
+  before_create :generate_authentication_token
 	validates :username,  presence: true, length: { maximum: 50 }
 	validates :company,  presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -52,5 +53,12 @@ class Vendor < ActiveRecord::Base
   # Forgets a user.
   def vendor_forget
     update_attribute(:remember_digest, nil)
+  end
+
+  def generate_authentication_token
+      loop do
+        self.authentication_token = SecureRandom.base64(64)
+        break unless Vendor.find_by(authentication_token: authentication_token)
+      end
   end
 end

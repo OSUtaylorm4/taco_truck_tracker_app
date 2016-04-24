@@ -4,7 +4,7 @@ class Api::V1::VendorsController < Api::V1::BaseController
   def index
     vendors = Vendor.all
 
-    vendors = apply_filters(users, params)
+    vendors = apply_filters(vendors, params)
 
     render(
       json: ActiveModel::ArraySerializer.new(

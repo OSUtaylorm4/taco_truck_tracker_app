@@ -13,13 +13,13 @@ class Api::V1::BaseController < ApplicationController
     	return api_error(status: 404, errors: 'Not found')
   	end
 
-  	def authenticate_user!
+  	def authenticate_vendor!
     	token, options = ActionController::HttpAuthentication::Token.token_and_options(request)
 
     	vendor_email = options.blank?? nil : options[:email]
     	vendor = vendor_email && Vendor.find_by(email: vendor_email)
 
-    if vendor && ActiveSupport::SecurityUtils.secure_compare(user.authentication_token, token)
+    if vendor && ActiveSupport::SecurityUtils.secure_compare(vendor.authentication_token, token)
       @current_vendor = vendor
     else
       return unauthenticated!
